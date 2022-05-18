@@ -1,0 +1,56 @@
+int partition(int *input, int si, int ei){
+    int pivot = input[si];
+    int smallcount = 0;
+    int pivot_index = si;
+    
+    for(int i= si+1 ; i<=ei ; i++){
+        if(input[i]<=pivot){
+            smallcount++;
+        }
+    }
+    //placing pivot to its correct position
+    pivot_index = si + smallcount;
+    input[si] = input[pivot_index];
+    input[pivot_index] = pivot;
+    
+    //to check the left and right side of pivot
+    int i = si;
+    int j = ei;
+    while(i<pivot_index && j>pivot_index){
+        if(input[i]<=input[pivot_index]){
+            i++;
+        }
+        else if(input[j]>input[pivot_index]){
+            j--;
+        }
+        else{
+            int temp = input[i];
+            input[i] = input[j];
+            input[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    return pivot_index;
+}
+
+void quickSort1(int input[], int si, int ei){
+    		// your code goes here 
+		if(si>=ei){
+            return;
+        }    
+    	int c = partition(input, si, ei);
+    	quickSort1(input, si, c-1);
+    	quickSort1(input, c+1, ei);
+    	return;
+}
+	
+
+void quickSort(int input[], int size) {
+  /* Don't write main().
+     Don't read input, it is passed as function argument.
+     Change in the given array itself.
+     Taking input and printing output is handled automatically.
+  */
+	quickSort1(input, 0, size-1);
+}
