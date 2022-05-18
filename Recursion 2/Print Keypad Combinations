@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string number[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+void printKeypad1(int num, string output){
+    if(num==0 || num==1){
+        cout<<output<<endl;
+        return;
+    }
+    int size = number[num%10].size();
+    for(int i=0 ; i<size ; i++){
+    printKeypad1(num/10, number[num%10][i]+output);
+    }
+}
+
+void printKeypad(int num){
+    /*
+    Given an integer number print all the possible combinations of the keypad. You do not need to return anything just print them.
+    */
+    string output;
+    printKeypad1(num, output);
+}
