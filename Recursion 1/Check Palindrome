@@ -1,0 +1,26 @@
+#include<cstring>
+
+bool helper(char input[], int si, int ei){
+    if(si>=ei){
+        return true;
+    }
+    if(input[si] != input[ei]){
+        return false;
+    }
+    bool smallans = helper(input, si+1, ei-1);
+    return smallans;
+}
+
+bool checkPalindrome(char input[]) {
+    // Write your code here
+	int start=0;
+    int end=strlen(input)-1;
+    if(strlen(input)==0||strlen(input)==1)
+        return true;
+    if(input[start] != input[end])
+        return false;
+    else
+        return checkPalindrome(input+1);
+}
+
+
