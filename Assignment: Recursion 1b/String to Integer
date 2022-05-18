@@ -1,0 +1,17 @@
+#include <cmath>
+#include <cstring>
+
+int stringToNumber(char input[]) {
+    // Write your code here
+	if(strlen(input)==1){
+        return input[0]-'0';
+    }
+    int smallans = stringToNumber(input+1);
+    int  first = input[0]-'0';
+    return smallans + first*pow(10, strlen(input+1));
+}
+
+
+
+
+
