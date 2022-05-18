@@ -1,0 +1,28 @@
+
+void printSubsetsOfArray1(int *input, int n, int *output, int m){
+    int newoutput[m+1];
+    if(n == 0){
+        for(int i=0 ; i<m ; i++){
+            cout<<output[i]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+  int k=0;
+    printSubsetsOfArray1(input+1,n-1,output,m);
+    for(int i=0;i<m;i++) {
+        newoutput[k++] = output[i];
+    }
+    newoutput[k] = input[0];
+    printSubsetsOfArray1(input+1, n-1 , newoutput , m+1);
+}
+
+
+
+void printSubsetsOfArray(int input[], int size) {
+	// Write your code here
+  	int *output = new int[1000];
+    printSubsetsOfArray1(input, size, output, 0);
+    delete []output;
+    return;
+}
