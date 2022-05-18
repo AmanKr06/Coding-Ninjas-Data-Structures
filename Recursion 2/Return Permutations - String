@@ -1,0 +1,25 @@
+#include <string>
+using namespace std;
+
+int returnPermutations(string input, string output[]){
+   	/* Don't write main() function.
+	 * Don't read input, it is passed as function argument.
+	 * Print output as specified in the question
+	*/
+    if(input.empty()){
+        output[0]="";
+        return 1;
+    }
+    string *temp=new string[1000];
+    int y=returnPermutations(input.substr(1),temp);
+    int size=0;
+    int k=0;
+    for(int i=0;i<y;i++){
+        for(int j=0;j<=temp[i].size();j++){
+            output[k]=temp[i].substr(0,j)+input[0]+temp[i].substr(j);
+            k++;
+        }
+    }
+   // delete []temp;
+    return k;
+}
