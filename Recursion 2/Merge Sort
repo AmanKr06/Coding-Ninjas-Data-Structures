@@ -1,0 +1,48 @@
+void merge(int *input, int si, int ei){
+    	int mid = (si+ei)/2;
+    	int i = si;
+    	int j = mid +1;
+    	//int size = ei-si+1;
+    
+    	//int *newarr = new int[size];
+    	int newarr[100000];
+    	int index = si; //indexing of new array
+    	while(i<=mid  && j<=ei){
+            if(input[i]<=input[j]){
+                newarr[index++] = input[i++];
+            }
+            else{
+                newarr[index++] = input[j++];
+            }
+        }
+    	while(i<=mid){
+            newarr[index++] = input[i++];
+        }
+    	while(j<=ei){
+            newarr[index++] = input[j++];
+        }
+    	for(int i = si ; i<=ei ; i++){
+            input[i] = newarr[i];
+        }
+    	//delete []newarr;
+}
+
+
+void mergeSort1(int *input, int si, int ei){
+    	if(si>=ei){
+            return;
+        }
+    	int mid = (si+ei)/2;
+    	mergeSort1(input, si, mid);
+    	mergeSort1(input, mid+1, ei);
+    
+    	//merging these 2 sorted array
+    	merge(input, si, ei);
+    	return;
+}
+
+
+void mergeSort(int input[], int size){
+	// Write your code here
+    mergeSort1(input, 0, size-1);   
+}
