@@ -1,0 +1,14 @@
+int multiplyNumbers(int m, int n) {
+    // Write your code here
+	/*if(n == 0){
+        return 0;
+    }*/
+    //base case
+    if(n == 1){
+        return m;
+    }
+    int smalloutput = multiplyNumbers(m, n-1);
+    return m + smalloutput;
+}
+
+
